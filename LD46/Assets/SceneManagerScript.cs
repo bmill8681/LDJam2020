@@ -1,9 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class SceneManagerScript : MonoBehaviour
 {
+    public string GetCurrentScene()
+    {
+        return SceneManager.GetActiveScene().name;
+    }
+
     public void QuitGame()
     {
         Debug.Log("I have quit the game");
@@ -13,18 +19,18 @@ public class SceneManagerScript : MonoBehaviour
     public void StartGame()
     {
         Debug.Log("I am starting the game");
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Game");
     }
 
     public void EndGame()
     {
         Debug.Log("I am entering the end of the game");
-        UnityEngine.SceneManagement.SceneManager.LoadScene("End");
+        SceneManager.LoadScene("End");
     }
 
     public void MainMenu()
     {
         Debug.Log("I am returning to the main menu");
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("MainMenu");
     }
 }
