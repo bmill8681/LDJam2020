@@ -37,7 +37,6 @@ public class AudioManagerScript : MonoBehaviour
         foreach(AudioClip clip in MusicList)
         {
             // add to music list based on name
-            Debug.Log("Adding Clip: " + clip.name);
             Music.Add(clip.name, clip);
         }
         foreach (AudioClip clip in CharacterSFXList)
@@ -61,34 +60,33 @@ public class AudioManagerScript : MonoBehaviour
 
     public void SetMusic(string music)
     {
-        Debug.Log("Trying to setthe music to: " + music);
         AudioSource source = this.AudioSources["MusicSource"];
         source.clip = this.Music[music];
         source.loop = true;
         source.Play();
     }
 
-    // These must be updated to reflect the correct source name. Should be passed in as a var
-    public void PlayCharacterSFX(string sfx, bool loop = false)
+    // This should be refactored - maybe use delegates
+
+    public void PlayCharacterSFX(string sfx, string src, bool loop = false)
     {
-        AudioSource source = this.AudioSources["character"];
-        source.clip = this.CharacterSFX[sfx];
-        source.loop = loop;
-        source.Play();
+        PlaySFXAudio(this.CharacterSFX[sfx], src, loop);
     }
 
-    public void PlayEnemySFX(string sfx, bool loop = false)
+    public void PlayEnemySFX(string sfx, string src, bool loop = false)
     {
-        AudioSource source = this.AudioSources["enemy"];
-        source.clip = this.EnemySFX[sfx];
-        source.loop = loop;
-        source.Play();
+        PlaySFXAudio(this.EnemySFX[sfx], src, loop);
     }
 
-    public void PlayWorldSFX(string sfx, bool loop = false)
+    public void PlayWorldSFX(string sfx, string src, bool loop = false)
     {
-        AudioSource source = this.AudioSources["world"];
-        source.clip = this.WorldSFX[sfx];
+        PlaySFXAudio(this.WorldSFX[sfx], src, loop);
+    }
+
+    private void PlaySFXAudio(AudioClip clip, string src, bool loop)
+    {
+        AudioSource source = this.AudioSources[src];
+        source.clip = clip;
         source.loop = loop;
         source.Play();
     }
