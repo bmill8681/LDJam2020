@@ -27,7 +27,6 @@ public class GameManagerScript : MonoBehaviour
     private void setInitialMusic()
     {
         string scene = GameObject.FindObjectOfType<SceneManagerScript>().GetCurrentScene();
-        Debug.Log("Scene: " + scene);
         AudioManagerScript.Instance.SetMusic(string.Format("{0}Music", scene));
     }
 }
