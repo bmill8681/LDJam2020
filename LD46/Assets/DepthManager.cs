@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -47,7 +48,7 @@ public class DepthManager : MonoBehaviour
         // The height goes from 0 to 0.2
         // The Z Index goes from 0 to 2
         // multiply by a factor of 10;
-        float newDepth = transform.position.y * this.DepthFactor;
+        float newDepth = (float)Math.Floor(transform.position.y * this.DepthFactor * 10) / 10;
         transform.position = new Vector3(transform.position.x, transform.position.y, newDepth);
     }
 }

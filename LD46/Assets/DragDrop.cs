@@ -1,24 +1,47 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class DragDrop : MonoBehaviour, IPointerDownHandler
+public class DragDrop : MonoBehaviour
 {
-    public void OnPointerDown(PointerEventData eventData)
+    public bool IsDragging = false;
+    Vector3 mousePosition;
+    float mZCoordinate;
+
+    //private void OnMouseDown()
+    //{
+    //    mousePosition = Camera.main.WorldToScreenPoint(this.transform.position);
+    //    Debug.Log(mousePosition);
+    //}
+
+    //private void OnMouseDrag()
+    //{
+    //    this.transform.position = GetMouseAsWorldPoint();
+    //    Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+    //}
+
+    //Vector3 GetMouseAsWorldPoint()
+    //{
+    //    return Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    //}
+
+
+    private void OnMouseDown()
     {
-        Debug.Log("I was clicked!");
+        mZCoordinate = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
+        mousePosition = gameObject.transform.position - GetMouseWorldPos();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private Vector3 GetMouseWorldPos()
     {
-        
+        Vector3 mousePoint = Input.mousePosition;
+        mousePoint.z = mZCoordinate;
+
+        return Camera.main.ScreenToWorldPoint(mousePoint);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnMouseDrag()
     {
-        
+        transform.position = GetMouseWorldPos() + mousePosition;
     }
 }
