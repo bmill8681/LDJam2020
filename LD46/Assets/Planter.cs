@@ -8,14 +8,14 @@ namespace PlantStuff
 
     public class Planter : MonoBehaviour
     {
-        enum PlanterSizes
+        public enum PlanterSizes
         {
             Large = 15,
             Medium = 10,
             Small = 5
         }
 
-        PlanterSizes PlanterSize;
+        public PlanterSizes PlanterSize;
         public int WaterLevel;
 
         private void Awake()

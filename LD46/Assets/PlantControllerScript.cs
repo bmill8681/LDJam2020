@@ -78,6 +78,16 @@ public class PlantControllerScript : MonoBehaviour
 
     public void AddWater()
     {
-        _Planter.AddWater();
+        AddedWaterToday = _Planter.AddWater();
+    }
+
+    public void RemovePlant()
+    {
+        this._Plant = null;
+    }
+
+    public string PrintWaterLevel()
+    {
+        return _Planter.WaterLevel.ToString();
     }
 }

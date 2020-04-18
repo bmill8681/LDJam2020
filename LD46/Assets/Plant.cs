@@ -164,6 +164,14 @@ namespace PlantStuff
             GetComponent<DepthManager>().enabled = false;
         }
 
+        public void RemoveFromPlanter()
+        {
+            this.gameObject.transform.SetParent(null);
+            this.IsPlanted = false;
+            this.CanAttachPlant = false;
+            GetComponent<DepthManager>().enabled = true;
+        }
+
         void ShowDropIndicator()
         {
             PlantSprite.GetComponent<SpriteRenderer>().color = new Color(0.7f, 0.8f, 0.5f, 1);
