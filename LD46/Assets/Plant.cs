@@ -109,13 +109,12 @@ namespace PlantStuff
 
         void OnTriggerEnter(Collider other)
         {
-            Debug.Log("Im colliding with: ");
-            Debug.Log(other);
             if (other.gameObject.CompareTag("planter"))
             {
                 if (DragController.IsDragging)
                 {
                     this.CanAttachPlant = true;
+                    ShowDropIndicator();
                     PlanterCollider = other.GetComponent<BoxCollider>();
                 }
             }
@@ -125,6 +124,7 @@ namespace PlantStuff
         {
             if (other.gameObject.CompareTag("planter"))
             {
+                HideDropIndicator();
                 this.CanAttachPlant = false;
                 this.PlanterCollider = null;
             }
@@ -142,10 +142,20 @@ namespace PlantStuff
         {
             if (PlanterCollider == null) return;
             PlantControllerScript PC = PlanterCollider.GetComponent<PlantControllerScript>();
+            HideDropIndicator();
             PC.AttachPlant(this);
             this.IsPlanted = true;
             
             GetComponent<DepthManager>().enabled = false;
+        }
+
+        void ShowDropIndicator()
+        {
+            PlantSprite.GetComponent<SpriteRenderer>().color = new Color(0.7f, 0.8f, 0.5f, 1);
+        }
+        void HideDropIndicator()
+        {
+            PlantSprite.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
         }
     }
 }
