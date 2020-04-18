@@ -5,7 +5,8 @@ using PlantStuff;
 
 public class PlantControllerScript : MonoBehaviour
 {
-    public bool IsPlanted = false;
+    [SerializeField]
+    private bool IsPlanted;
 
     public Plant _Plant;
     public Planter _Planter;
@@ -19,6 +20,7 @@ public class PlantControllerScript : MonoBehaviour
     private void Awake()
     {
         this._Planter = PlanterObject.GetComponent<Planter>();
+        this.IsPlanted = false;
     }
 
     /*  Reset Vars
@@ -33,6 +35,7 @@ public class PlantControllerScript : MonoBehaviour
     public void AttachPlant(Plant plant)
     {
         this._Plant = plant;
+        this.IsPlanted = true;
         plant.GetComponent<Transform>().position = PlantObject.transform.position;
         plant.GetComponent<Transform>().SetParent(PlantObject.transform);
     }

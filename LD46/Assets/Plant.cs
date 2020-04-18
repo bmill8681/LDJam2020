@@ -22,7 +22,7 @@ namespace PlantStuff
         public int HP { get; set; } = 5;
         public int MaxHP = 5;
 
-        public bool IsPlanted = false;
+        public bool IsPlanted;
         public bool IsDragging = false;
         public bool IsOffset = false;
         public bool ColliderAdjusted = false;
@@ -36,6 +36,7 @@ namespace PlantStuff
         private void Awake()
         {
             this.DragController = GetComponent<DragDrop>();
+            IsPlanted = false;
         }
 
         private void Update()
@@ -144,7 +145,7 @@ namespace PlantStuff
             PlantControllerScript PC = PlanterCollider.GetComponent<PlantControllerScript>();
             HideDropIndicator();
             PC.AttachPlant(this);
-            this.IsPlanted = true;
+            IsPlanted = true;
             
             GetComponent<DepthManager>().enabled = false;
         }
