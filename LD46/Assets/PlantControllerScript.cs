@@ -5,12 +5,21 @@ using PlantStuff;
 
 public class PlantControllerScript : MonoBehaviour
 {
+    public bool IsPlanted = false;
+
     public Plant _Plant;
     public Planter _Planter;
     public bool AddedWaterToday = false;
     public bool HealthRemoved = false;
 
-    public Sprite PlantSprite;
+    public GameObject PlantObject;
+    public GameObject PlanterObject;
+
+
+    private void Awake()
+    {
+        this._Planter = PlanterObject.GetComponent<Planter>();
+    }
 
     /*  Reset Vars
      *  This occurs every 6 ticks (hours)
@@ -19,6 +28,13 @@ public class PlantControllerScript : MonoBehaviour
     {
         this.AddedWaterToday = false;
         this.HealthRemoved = false;
+    }
+
+    public void AttachPlant(Plant plant)
+    {
+        this._Plant = plant;
+        plant.GetComponent<Transform>().position = PlantObject.transform.position;
+        plant.GetComponent<Transform>().SetParent(PlantObject.transform);
     }
 
 

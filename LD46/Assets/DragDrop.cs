@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class DragDrop : MonoBehaviour
@@ -8,28 +9,17 @@ public class DragDrop : MonoBehaviour
     Vector3 mousePosition;
     float mZCoordinate;
 
-    //private void OnMouseDown()
-    //{
-    //    mousePosition = Camera.main.WorldToScreenPoint(this.transform.position);
-    //    Debug.Log(mousePosition);
-    //}
 
-    //private void OnMouseDrag()
-    //{
-    //    this.transform.position = GetMouseAsWorldPoint();
-    //    Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-    //}
-
-    //Vector3 GetMouseAsWorldPoint()
-    //{
-    //    return Camera.main.ScreenToWorldPoint(Input.mousePosition);
-    //}
-
+    private void OnMouseUp()
+    {
+        IsDragging = false;
+    }
 
     private void OnMouseDown()
     {
         mZCoordinate = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
         mousePosition = gameObject.transform.position - GetMouseWorldPos();
+        IsDragging = true;
     }
 
     private Vector3 GetMouseWorldPos()
@@ -43,5 +33,6 @@ public class DragDrop : MonoBehaviour
     private void OnMouseDrag()
     {
         transform.position = GetMouseWorldPos() + mousePosition;
+
     }
 }

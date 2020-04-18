@@ -11,6 +11,7 @@ public class DepthManager : MonoBehaviour
     private float MinWidth = -1.0f;
     private float DepthFactor = 10.0f;
 
+
     void Update()
     {
         Transform transform = gameObject.GetComponent<Transform>();
