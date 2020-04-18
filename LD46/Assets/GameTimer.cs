@@ -8,13 +8,16 @@ using UnityEngine.UI;
 public class GameTimer : MonoBehaviour
 {
     public float Timer;
-    private int Hour;
-    private int Minute;
+    private int Hour = 5;
+    private int Minute = 50;
     private int IncrementTime = 5;
     private bool IsMorning;
 
     public float MaxTime = 5.0f;
     public bool RunClock = false;
+    public bool RunUpdate = false;
+    public bool HasUpdated = false;
+
     public TextMeshProUGUI TMP;
     public TextMeshProUGUI PauseText;
 
@@ -22,6 +25,7 @@ public class GameTimer : MonoBehaviour
     {
         Timer = 0;
         SetPauseText();
+        SetTimer();
     }
 
     private void LateUpdate()
@@ -32,14 +36,23 @@ public class GameTimer : MonoBehaviour
         }
     }
 
+    public bool GetUpdateStatus()
+    {
+        return RunUpdate && !HasUpdated;
+    }
+
+    public void SetRunUpdateFalse()
+    {
+        HasUpdated = true;
+    }
+
     private void IncrementTimer()
     {
+        if (!RunClock) return;
+
         this.Timer += Time.deltaTime;
-        Debug.Log(Math.Floor(this.Timer));
-        Debug.Log(Math.Floor(this.Timer) >= this.MaxTime);
         if (Math.Floor(this.Timer) >= this.MaxTime)
         {
-            Debug.Log("Adding Time");
             AddMinutes();
             SetTimer();
             Timer = 0;
@@ -49,7 +62,7 @@ public class GameTimer : MonoBehaviour
     private void AddMinutes()
     {
         Minute += IncrementTime;
-        if (Minute == 60)
+        if (Minute >= 60)
         {
             AddHour();
             Minute = 0;
@@ -68,6 +81,12 @@ public class GameTimer : MonoBehaviour
         if(Hour >= 12 && IsMorning)
         {
             IsMorning = false;
+        }
+
+        if(Hour % 2 == 0)
+        {
+            RunUpdate = true;
+            HasUpdated = false;
         }
     }
 

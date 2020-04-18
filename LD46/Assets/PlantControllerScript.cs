@@ -16,7 +16,6 @@ public class PlantControllerScript : MonoBehaviour
     public GameObject PlantObject;
     public GameObject PlanterObject;
 
-
     private void Awake()
     {
         this._Planter = PlanterObject.GetComponent<Planter>();

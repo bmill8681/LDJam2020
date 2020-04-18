@@ -23,6 +23,7 @@ namespace PlantStuff
         public int MaxHP = 5;
 
         public bool IsPlanted;
+        public bool IsDead;
         public bool IsDragging = false;
         public bool IsOffset = false;
         public bool ColliderAdjusted = false;
@@ -32,11 +33,19 @@ namespace PlantStuff
 
         public GameObject PlantSprite;
         BoxCollider PlanterCollider = null;
+        public GameManagerScript GameController;
 
         private void Awake()
         {
+            this.GameController = FindObjectOfType<GameManagerScript>();
+            if(this.GameController == null)
+            {
+                throw new Exception("No game controller found in scene");
+            }
+            this.GameController.AddPlantTolist(this);
             this.DragController = GetComponent<DragDrop>();
             IsPlanted = false;
+            IsDead = false;
         }
 
         private void Update()
@@ -106,6 +115,11 @@ namespace PlantStuff
         public void RemoveHealth()
         {
             this.HP--;
+            if (HP <= 0)
+            {
+                HP = 0;
+                IsDead = true;
+            }
         }
 
         void OnTriggerEnter(Collider other)
@@ -157,6 +171,11 @@ namespace PlantStuff
         void HideDropIndicator()
         {
             PlantSprite.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        }
+
+        public void PrintPlantStatus()
+        {
+            Debug.Log(string.Format("Dead?: {0}, HP: {1}, Roots: {2}", this.IsDead, this.HP, this.RootDepth));
         }
     }
 }
