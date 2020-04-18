@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using PlantStuff;
-using PlantTools;
 
 public class GameManagerScript : MonoBehaviour
 {
@@ -10,7 +9,7 @@ public class GameManagerScript : MonoBehaviour
    
     public string scene;
 
-    public GameTimer GameTimeController;
+    public GameTimer GameTimeController = null;
 
     public List<Plant> PlantList;
 
@@ -29,11 +28,12 @@ public class GameManagerScript : MonoBehaviour
     private void Start()
     {
         //setInitialMusic();
+        scene = SceneManagerScript.Instance.GetCurrentScene();
     }
 
     private void Update()
     {
-        if(scene.Equals("Game") && GameTimeController == null)
+        if(SceneManagerScript.Instance.GetCurrentScene().Equals("Game") && GameTimeController == null)
         {
             GameTimeController = FindObjectOfType<GameTimer>();
         }

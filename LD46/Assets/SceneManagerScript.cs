@@ -5,6 +5,20 @@ using UnityEngine;
 
 public class SceneManagerScript : MonoBehaviour
 {
+    public static SceneManagerScript Instance { get; private set; }
+
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        } else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public string GetCurrentScene()
     {
         return SceneManager.GetActiveScene().name;

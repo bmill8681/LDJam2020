@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using PlantTools;
-using static PlantTools.PlantToolManager;
 
 public class DragDrop : MonoBehaviour
 {
-    public PlantToolManager ToolManager;
 
     public bool IsDragging = false;
     Vector3 mousePosition;
     float mZCoordinate;
-
 
     private void OnMouseUp()
     {
@@ -21,11 +18,8 @@ public class DragDrop : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (ToolManagerScript.Instance.GetActiveTool() != ToolManagerScript.Tools.Hand) return;
 
-        if (!ToolManager.CheckActiveTool(Tools.Hand))
-        {
-            return;
-        }
         mZCoordinate = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
         mousePosition = gameObject.transform.position - GetMouseWorldPos();
         IsDragging = true;
@@ -41,7 +35,8 @@ public class DragDrop : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        transform.position = GetMouseWorldPos() + mousePosition;
+        if (ToolManagerScript.Instance.GetActiveTool() != ToolManagerScript.Tools.Hand) return;
 
+        transform.position = GetMouseWorldPos() + mousePosition;
     }
 }

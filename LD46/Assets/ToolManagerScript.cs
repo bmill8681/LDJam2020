@@ -4,8 +4,9 @@ using UnityEngine;
 
 namespace PlantTools
 {
-    public class PlantToolManager : MonoBehaviour
+    public class ToolManagerScript : MonoBehaviour
     {
+        public static ToolManagerScript Instance { get; private set; }
         public enum Tools
         {
             Hand = 0,
@@ -14,7 +15,21 @@ namespace PlantTools
             Shovel = 3,
         }
 
-        Tools ActiveTool = Tools.Hand;
+        Tools ActiveTool;
+
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+                ActiveTool = Tools.Hand;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
 
         public Tools GetActiveTool()
         {
