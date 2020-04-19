@@ -384,6 +384,7 @@ namespace PlantStuff
             {
                 HP = 0;
                 IsDead = true;
+                GameManagerScript.Instance.SetToolsDisabled(true);
                 GameManagerScript.Instance.SetDeadPlant(this);
             }
             PlantSpriteUpdateHandler.SetPlantSprite(this.PlantSize, this.HP);
