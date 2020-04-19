@@ -80,7 +80,7 @@ public class PlantControllerScript : MonoBehaviour
         // If the plant hasn't lost HP. Add HP
         if (!HealthRemoved)
         {
-            _Plant.AddHeath();
+            _Plant.AddHeath(_Planter.GetSize() + 2);
         }
 
         _Plant.PrintPlantStatus();

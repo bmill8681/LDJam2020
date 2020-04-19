@@ -362,13 +362,16 @@ namespace PlantStuff
             SetColliderSize();
         }
 
-        public void AddHeath()
+        public void AddHeath(int maxRootSize)
         {
             this.HP++;
             if(this.HP > MaxHP)
             {
                 this.HP = MaxHP;
-                AddRootGrowth();
+                if(this.RootDepth < maxRootSize)
+                {
+                    AddRootGrowth();
+                }
             }
             PlantSpriteUpdateHandler.SetPlantSprite(this.PlantSize, this.HP);
             SetColliderSize();
@@ -468,16 +471,19 @@ namespace PlantStuff
                     plantSheerSuccess = true;
                     this.PlantSize = PlantSizes.Large;
                     this.PlantGrowth = 11;
+                    this.RootDepth -= 2;
                     break;
                 case PlantSizes.Large:
                     plantSheerSuccess = true;
                     this.PlantSize = PlantSizes.Medium;
                     this.PlantGrowth = 7;
+                    this.RootDepth -= 2;
                     break;
                 case PlantSizes.Medium:
                     plantSheerSuccess = true;
                     this.PlantSize = PlantSizes.Small;
                     this.PlantGrowth = 3;
+                    this.RootDepth -= 2;
                     break;
             }
             AdjustCollider();
