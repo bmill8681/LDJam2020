@@ -49,17 +49,17 @@ public class PlantControllerScript : MonoBehaviour
      */
     public void AssessPlant()
     {
-        int rootWaterFactor = _Plant.RootDepth + _Planter.WaterLevel;
-
+        int rootWaterFactor = GetRootWaterFactor();
+        
         // If the roots aren't in the water, remove HP 
-        if (rootWaterFactor < 17)
+        if (rootWaterFactor == -1)
         {
             _Plant.RemoveHealth();
             HealthRemoved = true;
         }
 
         // If the roots are too wet, remove HP
-        if (rootWaterFactor >= 19)
+        if (rootWaterFactor == 1)
         {
             _Plant.RemoveHealth();
             HealthRemoved = true;
@@ -70,6 +70,7 @@ public class PlantControllerScript : MonoBehaviour
         {
             _Plant.RemoveHealth();
             HealthRemoved = true;
+            Debug.Log(string.Format("Removed HP because the container is too small - Container Size: {0}, Roots: {1}", _Planter.GetSize(), _Plant.RootDepth));
         }
 
         // If the plant hasn't lost HP. Add HP
@@ -77,6 +78,30 @@ public class PlantControllerScript : MonoBehaviour
         {
             _Plant.AddHeath();
         }
+
+        _Plant.PrintPlantStatus();
+        _Planter.PrintPlanterStatus();
+        _Planter.ReduceWater();
+    }
+
+    private int GetRootWaterFactor()
+    {
+        int maxWaterLevel = _Planter.GetSize();
+
+        if(_Planter.WaterLevel < (maxWaterLevel - _Plant.RootDepth - 2))
+        {
+            Debug.Log(string.Format("Planter Holds: {0}, Roots at: {1}, Water at: {2}", _Planter.GetSize(), _Planter.GetSize() - _Plant.RootDepth, _Planter.WaterLevel));
+            Debug.Log(string.Format("Removed HP because the roots are't in water - Water Level: {0}, Roots: {1}, Factor: {2}", _Planter.WaterLevel, _Plant.RootDepth, maxWaterLevel - _Plant.RootDepth - 2));
+            return -1;
+        }
+
+        if(_Planter.WaterLevel > maxWaterLevel - _Plant.RootDepth + 2)
+        {
+            Debug.Log(string.Format("Removed HP because the roots are too wet - Water Level: {0}, Roots: {1}, Factor: {2}", _Planter.WaterLevel, _Plant.RootDepth, maxWaterLevel - _Plant.RootDepth + 2));
+            return 1;
+        }
+
+        return 0;
     }
 
     public void AddWater()

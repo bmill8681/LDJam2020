@@ -2102,11 +2102,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 617997612}
-  - component: {fileID: 617997611}
+  - component: {fileID: 617997615}
   - component: {fileID: 617997614}
   - component: {fileID: 617997613}
-  - component: {fileID: 617997615}
   - component: {fileID: 617997616}
+  - component: {fileID: 617997611}
   - component: {fileID: 617997617}
   - component: {fileID: 617997618}
   - component: {fileID: 617997619}
@@ -2130,7 +2130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebeaea27352e2c94e87d3a70c338a917, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlanterSize: 15
+  PlanterSize: 12
   WaterLevel: 0
 --- !u!4 &617997612
 Transform:
@@ -4769,7 +4769,6 @@ GameObject:
   - component: {fileID: 1724839071}
   - component: {fileID: 1724839070}
   - component: {fileID: 1724839069}
-  - component: {fileID: 1724839068}
   - component: {fileID: 1724839067}
   m_Layer: 5
   m_Name: AddPlanterL
@@ -4811,20 +4810,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NewPlanter: {fileID: 0}
   NewPlanterPosition: {fileID: 1527861557}
---- !u!114 &1724839068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1724839065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdb71b66212493747a1c929de5871d1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsActive: 0
-  ToolType: 1
 --- !u!114 &1724839069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4928,7 +4913,6 @@ GameObject:
   - component: {fileID: 1869394612}
   - component: {fileID: 1869394611}
   - component: {fileID: 1869394610}
-  - component: {fileID: 1869394609}
   - component: {fileID: 1869394608}
   m_Layer: 5
   m_Name: AddPlanterM
@@ -4970,20 +4954,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NewPlanter: {fileID: 0}
   NewPlanterPosition: {fileID: 1527861557}
---- !u!114 &1869394609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1869394606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdb71b66212493747a1c929de5871d1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsActive: 0
-  ToolType: 2
 --- !u!114 &1869394610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5624,7 +5594,6 @@ GameObject:
   - component: {fileID: 2013397041}
   - component: {fileID: 2013397040}
   - component: {fileID: 2013397039}
-  - component: {fileID: 2013397038}
   - component: {fileID: 2013397037}
   m_Layer: 5
   m_Name: AddPlanterS
@@ -5666,20 +5635,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NewPlanter: {fileID: 0}
   NewPlanterPosition: {fileID: 1527861557}
---- !u!114 &2013397038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2013397035}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdb71b66212493747a1c929de5871d1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsActive: 0
-  ToolType: 3
 --- !u!114 &2013397039
 MonoBehaviour:
   m_ObjectHideFlags: 0

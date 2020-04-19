@@ -56,8 +56,6 @@ public class GameManagerScript : MonoBehaviour
     {
         foreach(Plant plant in PlantList)
         {
-            plant.PrintPlantStatus();
-
             if (!plant.IsPlanted)
             {
                 plant.RemoveHealth();

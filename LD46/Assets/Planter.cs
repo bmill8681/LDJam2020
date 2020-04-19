@@ -35,16 +35,25 @@ namespace PlantStuff
         public bool AddWater()
         {
             bool addedWater = false;
-            switch (this.PlanterSize)
-            {
-                case PlanterSizes.Large:
+            int sizeOfPlanter = (int)this.PlanterSize;
+               
+            switch (sizeOfPlanter)
+            { 
+                case (int)PlanterSizes.XLarge:
                     if (this.WaterLevel < (int)PlanterSizes.Large)
                     {
                         this.WaterLevel++;
                         addedWater = true;
                     }
                     break;
-                case PlanterSizes.Medium:
+                case (int)PlanterSizes.Large:
+                    if (this.WaterLevel < (int)PlanterSizes.Large)
+                    {
+                        this.WaterLevel++;
+                        addedWater = true;
+                    }
+                    break;
+                case (int)PlanterSizes.Medium:
                     if (this.WaterLevel < (int)PlanterSizes.Medium)
                     {
                         this.WaterLevel++;
@@ -52,7 +61,7 @@ namespace PlantStuff
                     }
 
                     break;
-                case PlanterSizes.Small:
+                case (int)PlanterSizes.Small:
                     if (this.WaterLevel < (int)PlanterSizes.Small)
                     {
                         this.WaterLevel++;
@@ -61,6 +70,20 @@ namespace PlantStuff
                     break;
             }
             return addedWater;
+        }
+
+        public void ReduceWater()
+        {
+            this.WaterLevel--;
+            if(WaterLevel < 0)
+            {
+                WaterLevel = 0;
+            }
+        }
+
+        public void PrintPlanterStatus()
+        {
+            Debug.Log(string.Format("Plater Water Capacity: {0}, Current Water Level: {1}", this.GetSize(), this.WaterLevel));
         }
     }
 }

@@ -19,7 +19,7 @@ namespace PlantStuff
 
         public DragDrop DragController;
 
-        public int RootDepth { get; set; } = 1;
+        public int RootDepth { get; set; } = 4;
         [SerializeField]
         private int HP;
         private int MaxHP = 6;
@@ -51,7 +51,7 @@ namespace PlantStuff
             this.GameController.AddPlantTolist(this);
             this.DragController = GetComponent<DragDrop>();
             this.HP = this.MaxHP;
-            this.PlantGrowth = 1;
+            this.PlantGrowth = 4;
             this.IsPlanted = false;
             this.IsDead = false;
             PlantSpriteUpdateHandler.SetPlantSprite(this.PlantSize, this.HP);
@@ -71,7 +71,6 @@ namespace PlantStuff
                 SetPositionOffset();
             }
 
-            PlantSpriteUpdateHandler.SetPlantSprite(this.PlantSize, this.HP);
             ForTestingPurposes();
         }
 
@@ -182,6 +181,7 @@ namespace PlantStuff
             {
                 this.PlantSize = PlantSizes.XLarge;
             }
+            PlantSpriteUpdateHandler.SetPlantSprite(this.PlantSize, this.HP);
         }
 
         public void AddHeath()
@@ -190,7 +190,9 @@ namespace PlantStuff
             if(this.HP > MaxHP)
             {
                 this.HP = MaxHP;
+                AddRootGrowth();
             }
+            PlantSpriteUpdateHandler.SetPlantSprite(this.PlantSize, this.HP);
         }
 
         public void RemoveHealth()
@@ -201,6 +203,7 @@ namespace PlantStuff
                 HP = 0;
                 IsDead = true;
             }
+            PlantSpriteUpdateHandler.SetPlantSprite(this.PlantSize, this.HP);
         }
 
         void OnTriggerEnter(Collider other)
@@ -270,7 +273,7 @@ namespace PlantStuff
 
         public void PrintPlantStatus()
         {
-            Debug.Log(string.Format("Dead?: {0}, HP: {1}, Roots: {2}", this.IsDead, this.HP, this.RootDepth));
+            Debug.Log(string.Format("Dead?: {0}, HP: {1}, Roots: {2}, Growth: {3}", this.IsDead, this.HP, this.RootDepth, this.PlantGrowth));
         }
 
         public bool Sheer()

@@ -87,7 +87,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DragController: {fileID: 0}
-  MaxHP: 5
+  HP: 0
+  PlantGrowth: 0
   IsPlanted: 0
   IsDead: 0
   IsDragging: 0
@@ -109,11 +110,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e9817e7218263a40b65d332108b1067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlantSpriteList:
+  HP3_PlantSpriteList:
   - {fileID: -3527876879021525145, guid: 930d3bf27c6918745b3b40ea34e71013, type: 3}
   - {fileID: -1927889906097043966, guid: 930d3bf27c6918745b3b40ea34e71013, type: 3}
   - {fileID: 5004531278555049960, guid: 930d3bf27c6918745b3b40ea34e71013, type: 3}
   - {fileID: -5395861003456798081, guid: 930d3bf27c6918745b3b40ea34e71013, type: 3}
+  HP2_PlantSpriteList:
+  - {fileID: -6800931340347744238, guid: 930d3bf27c6918745b3b40ea34e71013, type: 3}
+  - {fileID: 3017316628048636319, guid: 930d3bf27c6918745b3b40ea34e71013, type: 3}
+  - {fileID: -4350115279957141132, guid: 930d3bf27c6918745b3b40ea34e71013, type: 3}
+  - {fileID: -810785574404401188, guid: 930d3bf27c6918745b3b40ea34e71013, type: 3}
+  HP1_PlantSpriteList:
+  - {fileID: -3030608088069509471, guid: 930d3bf27c6918745b3b40ea34e71013, type: 3}
+  - {fileID: -5568842699155709627, guid: 930d3bf27c6918745b3b40ea34e71013, type: 3}
+  - {fileID: -2185335503829088403, guid: 930d3bf27c6918745b3b40ea34e71013, type: 3}
+  - {fileID: 6915438452729039185, guid: 930d3bf27c6918745b3b40ea34e71013, type: 3}
+  HP0_PlantSpriteList:
+  - {fileID: 6984442412936397737, guid: 930d3bf27c6918745b3b40ea34e71013, type: 3}
+  - {fileID: -2245023530354808097, guid: 930d3bf27c6918745b3b40ea34e71013, type: 3}
+  - {fileID: 3275049470109395508, guid: 930d3bf27c6918745b3b40ea34e71013, type: 3}
+  - {fileID: 8482285269433270328, guid: 930d3bf27c6918745b3b40ea34e71013, type: 3}
 --- !u!1 &2850443479254001570
 GameObject:
   m_ObjectHideFlags: 0

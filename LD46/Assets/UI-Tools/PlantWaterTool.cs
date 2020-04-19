@@ -17,8 +17,6 @@ public class PlantWaterTool : MonoBehaviour
         if (ToolManagerScript.Instance.CheckActiveTool(ToolManagerScript.Tools.WateringCan))
         {
             PC.AddWater();
-            Debug.Log("I Added Water");
-            Debug.Log("Water Level: " + PC.PrintWaterLevel());
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static PlantStuff.Plant;
@@ -30,6 +31,9 @@ public class PlantSpriteUpdater : MonoBehaviour
                 break;
             case 0:
                 SetSpriteHP0(spriteRenderer, index);
+                break;
+            default:
+                Debug.LogWarning(string.Format("Something wront in SpriteUpdater -- index: {0} / 3, ModHP: {1} / 3", index, modHP));
                 break;
         }
     }
