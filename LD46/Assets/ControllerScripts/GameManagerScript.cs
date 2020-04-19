@@ -50,7 +50,7 @@ public class GameManagerScript : MonoBehaviour
         }
         // If it's time to run an assessment on the plants, assess all plants in the scene
         // This means we need a list of all the living plants in the scene
-        if (GameTimeController.GetUpdateStatus())
+        if (GameTimeController != null && GameTimeController.GetUpdateStatus())
         {
             RunAssessmentOnPlants();
         }
@@ -58,6 +58,16 @@ public class GameManagerScript : MonoBehaviour
         if(PrevPlantCount != PlantList.Count)
         {
             PlantCounter.UpdatePlantCounter(PlantList.Count);
+        }
+    }
+
+    public void ResetGame()
+    {
+        this.PlantList = new List<Plant>();
+        this.ToolsDisabled = true;
+        if (GameTimeController != null)
+        {
+            GameTimeController.ResetGame();
         }
     }
 

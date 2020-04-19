@@ -36,6 +36,14 @@ public class GameTimer : MonoBehaviour
         }
     }
 
+    public void ResetGame()
+    {
+        this.Hour = 5;
+        this.Minute = 1;
+        this.Multiplier = 1;
+        this.RunClock = false;
+    }
+
     public bool GetUpdateStatus()
     {
         return RunUpdate && !HasUpdated;
