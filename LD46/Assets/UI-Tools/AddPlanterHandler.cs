@@ -9,8 +9,7 @@ public class AddPlanterHandler : MonoBehaviour
 
     public void AddNewPlanter()
     {
-        Debug.Log("Adding a new planter");
-        //GameObject newPlanter = Instantiate(NewPlanter) as GameObject;
-        //newPlanter.transform.position = NewPlanterPosition.position;
+        GameObject newPlanter = Instantiate(NewPlanter) as GameObject;
+        newPlanter.transform.position = NewPlanterPosition.position;
     }
 }

@@ -390,7 +390,7 @@ namespace PlantStuff
         {
             if (other.gameObject.CompareTag("planter"))
             {
-                if (DragController.IsDragging)
+                if (DragController.IsDragging && other.GetComponent<PlantControllerScript>()._Plant == null)
                 {
                     this.CanAttachPlant = true;
                     ShowDropIndicator();

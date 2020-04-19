@@ -45,7 +45,10 @@ public class InspectPlanterTool : MonoBehaviour
 
     private void OnMouseExit()
     {
-        ToggleSprites(false);
+        if (ToolManagerScript.Instance.CheckActiveTool(ToolManagerScript.Tools.Inspect))
+        {
+            ToggleSprites(false);
+        }
     }
 
     private void ToggleSprites(bool val)

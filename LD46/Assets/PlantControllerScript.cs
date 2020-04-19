@@ -23,7 +23,7 @@ public class PlantControllerScript : MonoBehaviour
     public Animator SpawnAnimator1;
     public Animator SpawnAnimator2;
 
-    private void Awake()
+    private void Start()
     {
         this._Planter = PlanterObject.GetComponent<Planter>();
         this.IsPlanted = false;
