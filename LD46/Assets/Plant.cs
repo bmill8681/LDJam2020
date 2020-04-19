@@ -23,6 +23,8 @@ namespace PlantStuff
         [SerializeField]
         private int HP;
         private int MaxHP = 6;
+        [SerializeField]
+        private int PlantGrowth;
 
         public bool IsPlanted;
         public bool IsDead;
@@ -49,6 +51,7 @@ namespace PlantStuff
             this.GameController.AddPlantTolist(this);
             this.DragController = GetComponent<DragDrop>();
             this.HP = this.MaxHP;
+            this.PlantGrowth = 1;
             this.IsPlanted = false;
             this.IsDead = false;
             PlantSpriteUpdateHandler.SetPlantSprite(this.PlantSize, this.HP);
@@ -67,8 +70,9 @@ namespace PlantStuff
                 AdjustCollider();
                 SetPositionOffset();
             }
-            ForTestingPurposes();
 
+            PlantSpriteUpdateHandler.SetPlantSprite(this.PlantSize, this.HP);
+            ForTestingPurposes();
         }
 
         void ForTestingPurposes()
@@ -77,7 +81,6 @@ namespace PlantStuff
             {
                 this.PlantSize = PlantSizes.XLarge;
                 this.HP = this.MaxHP;
-                PlantSpriteUpdateHandler.SetPlantSprite(this.PlantSize, this.HP);
             }
             if (Input.GetKeyDown(KeyCode.W))
             {
@@ -136,7 +139,49 @@ namespace PlantStuff
 
         public void AddRootGrowth()
         {
-            this.RootDepth++;
+            bool growPlantSize = false;
+
+            // If the PlantGrowth is smaller than the maximum PlantSize value 
+            // and the PlantGrowth is smaller than the root system supports
+            // grow the plant
+            // otherwise, grow the root system.
+            if (this.PlantGrowth < (int)PlantSizes.XLarge)
+            {
+                if (this.PlantGrowth <= this.RootDepth)
+                {
+                    growPlantSize = true;
+                } 
+            }
+
+            if (growPlantSize)
+            {
+                this.PlantGrowth++;
+                AdjustPlantSize();
+            }
+            else
+            {
+                this.RootDepth++;
+            }
+        }
+
+        private void AdjustPlantSize()
+        {
+            if(this.PlantGrowth <= 4)
+            {
+                this.PlantSize = PlantSizes.Small;
+            }
+            else if (this.PlantGrowth > 4 && this.PlantGrowth <= 8)
+            {
+                this.PlantSize = PlantSizes.Medium;
+            }
+            else if (this.PlantGrowth > 8 && this.PlantGrowth <= 12)
+            {
+                this.PlantSize = PlantSizes.Large;
+            }
+            else if (this.PlantGrowth > 12)
+            {
+                this.PlantSize = PlantSizes.XLarge;
+            }
         }
 
         public void AddHeath()
@@ -146,7 +191,6 @@ namespace PlantStuff
             {
                 this.HP = MaxHP;
             }
-            PlantSpriteUpdateHandler.SetPlantSprite(this.PlantSize, this.HP);
         }
 
         public void RemoveHealth()
@@ -157,7 +201,6 @@ namespace PlantStuff
                 HP = 0;
                 IsDead = true;
             }
-            PlantSpriteUpdateHandler.SetPlantSprite(this.PlantSize, this.HP);
         }
 
         void OnTriggerEnter(Collider other)

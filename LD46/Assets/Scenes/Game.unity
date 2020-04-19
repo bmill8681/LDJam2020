@@ -3386,7 +3386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Timer: 0
-  MaxTime: 5
+  MaxTime: 1
   RunClock: 0
   RunUpdate: 0
   HasUpdated: 1

@@ -10,10 +10,10 @@ public class GameTimer : MonoBehaviour
     public float Timer;
     private int Hour = 5;
     private int Minute = 50;
-    private int IncrementTime = 5;
+    private int Multiplier = 1;
     private bool IsMorning;
 
-    public float MaxTime = 5.0f;
+    public float MaxTime = 1.0f;
     public bool RunClock = false;
     public bool RunUpdate = false;
     public bool HasUpdated = false;
@@ -50,8 +50,8 @@ public class GameTimer : MonoBehaviour
     {
         if (!RunClock) return;
 
-        this.Timer += Time.deltaTime;
-        if (Math.Floor(this.Timer) >= this.MaxTime)
+        this.Timer += Time.deltaTime * this.Multiplier;
+        if (this.Timer >= this.MaxTime)
         {
             AddMinutes();
             SetTimer();
@@ -61,7 +61,7 @@ public class GameTimer : MonoBehaviour
 
     private void AddMinutes()
     {
-        Minute += IncrementTime;
+        Minute++;
         if (Minute >= 60)
         {
             AddHour();
@@ -83,7 +83,7 @@ public class GameTimer : MonoBehaviour
             IsMorning = false;
         }
 
-        if(Hour % 2 == 0)
+        if(Hour % 1 == 0)
         {
             RunUpdate = true;
             HasUpdated = false;
@@ -127,19 +127,19 @@ public class GameTimer : MonoBehaviour
 
     public void SpeedUpTime()
     {
-        this.IncrementTime += 5;
-        if(IncrementTime >= 30)
+        this.Multiplier ++;
+        if(this.Multiplier >= 10)
         {
-            IncrementTime = 30;
+            this.Multiplier = 10;
         }
     }
 
     public void SlowDownTime()
     {
-        this.IncrementTime -= 5;
-        if(IncrementTime <= 5)
+        this.Multiplier--;
+        if (this.Multiplier <= 1)
         {
-            IncrementTime = 5;
+            this.Multiplier = 1;
         }
     }
 
