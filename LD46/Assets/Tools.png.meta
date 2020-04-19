@@ -1,19 +1,31 @@
 fileFormatVersion: 2
-guid: a0e5637f712d068478d78283adfe7369
+guid: 8fb4764222c79044d9f11bb9728ee0e9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5089199921436381015
-    second: PlanterSprites_0
+      213: 2860006914309871096
+    second: Tools_0
   - first:
-      213: -201572380254825610
-    second: PlanterSprites_1
+      213: -2376758258213490438
+    second: Tools_1
   - first:
-      213: -7324651409321507163
-    second: PlanterSprites_2
+      213: 6232742816020895870
+    second: Tools_2
   - first:
-      213: -4098632044950332506
-    second: PlanterSprites_3
+      213: -3569232777630780389
+    second: Tools_3
+  - first:
+      213: 3379066624450153177
+    second: Tools_4
+  - first:
+      213: 1666225654822289539
+    second: Tools_5
+  - first:
+      213: -855942343913074080
+    second: Tools_6
+  - first:
+      213: 4858919519181452133
+    second: Tools_7
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -32,7 +44,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   grayScaleToAlpha: 0
@@ -44,7 +56,7 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
+    aniso: 1
     mipBias: -100
     wrapU: 1
     wrapV: 1
@@ -122,13 +134,97 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlanterSprites_0
+      name: Tools_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f5d996b229c0b720800000000000000
+      internalID: 2860006914309871096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tools_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af0753ee4fe040fd0800000000000000
+      internalID: -2376758258213490438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tools_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e781b4591962f7650800000000000000
+      internalID: 6232742816020895870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tools_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b14f2a803b9877ec0800000000000000
+      internalID: -3569232777630780389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tools_4
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 32
-        height: 32
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -136,20 +232,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75f49246d5870a640800000000000000
-      internalID: 5089199921436381015
+      spriteID: 9dacabe113bd4ee20800000000000000
+      internalID: 3379066624450153177
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlanterSprites_1
+      name: Tools_5
       rect:
         serializedVersion: 2
         x: 32
         y: 0
         width: 32
-        height: 32
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,20 +253,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6739166fcfed33df0800000000000000
-      internalID: -201572380254825610
+      spriteID: 380435fa76f9f1710800000000000000
+      internalID: 1666225654822289539
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlanterSprites_2
+      name: Tools_6
       rect:
         serializedVersion: 2
         x: 64
         y: 0
         width: 32
-        height: 32
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,20 +274,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a6c3d3d95c995a90800000000000000
-      internalID: -7324651409321507163
+      spriteID: 06298d229f41f14f0800000000000000
+      internalID: -855942343913074080
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlanterSprites_3
+      name: Tools_7
       rect:
         serializedVersion: 2
         x: 96
         y: 0
         width: 32
-        height: 32
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -199,8 +295,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6abd3bfdedbbe17c0800000000000000
-      internalID: -4098632044950332506
+      spriteID: 563b50d1f895e6340800000000000000
+      internalID: 4858919519181452133
       vertices: []
       indices: 
       edges: []
@@ -208,7 +304,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: b2f6779e09554204b991c4f49550e3d2
     internalID: 0
     vertices: []
     indices: 

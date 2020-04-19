@@ -20,8 +20,9 @@ namespace PlantStuff
         public DragDrop DragController;
 
         public int RootDepth { get; set; } = 1;
-        public int HP { get; set; } = 5;
-        public int MaxHP = 5;
+        [SerializeField]
+        private int HP;
+        private int MaxHP = 6;
 
         public bool IsPlanted;
         public bool IsDead;
@@ -47,9 +48,10 @@ namespace PlantStuff
             this.PlantSize = PlantSizes.Small;
             this.GameController.AddPlantTolist(this);
             this.DragController = GetComponent<DragDrop>();
-            IsPlanted = false;
-            IsDead = false;
-            PlantSpriteUpdateHandler.SetPlantSprite(this.PlantSize);
+            this.HP = this.MaxHP;
+            this.IsPlanted = false;
+            this.IsDead = false;
+            PlantSpriteUpdateHandler.SetPlantSprite(this.PlantSize, this.HP);
         }
 
         private void Update()
@@ -68,7 +70,11 @@ namespace PlantStuff
             if (Input.GetKeyDown(KeyCode.G))
             {
                 this.PlantSize = PlantSizes.XLarge;
-                PlantSpriteUpdateHandler.SetPlantSprite(this.PlantSize);
+                PlantSpriteUpdateHandler.SetPlantSprite(this.PlantSize, this.HP);
+            }
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                this.RemoveHealth();
             }
         }
 
@@ -118,6 +124,7 @@ namespace PlantStuff
             {
                 this.HP = MaxHP;
             }
+            PlantSpriteUpdateHandler.SetPlantSprite(this.PlantSize, this.HP);
         }
 
         public void RemoveHealth()
@@ -128,6 +135,7 @@ namespace PlantStuff
                 HP = 0;
                 IsDead = true;
             }
+            PlantSpriteUpdateHandler.SetPlantSprite(this.PlantSize, this.HP);
         }
 
         void OnTriggerEnter(Collider other)
@@ -220,7 +228,6 @@ namespace PlantStuff
                     break;
             }
             Debug.Log("Sheer Success: " + plantSheerSuccess);
-            PlantSpriteUpdateHandler.SetPlantSprite(this.PlantSize);
             return plantSheerSuccess;
         }
     }
