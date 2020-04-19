@@ -430,7 +430,9 @@ namespace PlantStuff
 
         public void RemoveFromPlanter()
         {
-            this.gameObject.transform.SetParent(null);
+            Transform trans = this.gameObject.GetComponent<Transform>();
+            trans.SetParent(null);
+            trans.position = new Vector3(trans.position.x, 0.0f, trans.position.z);
             this.IsPlanted = false;
             this.CanAttachPlant = false;
             GetComponent<DepthManager>().enabled = true;

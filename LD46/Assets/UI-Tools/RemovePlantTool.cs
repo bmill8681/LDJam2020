@@ -18,7 +18,6 @@ public class RemovePlantTool : MonoBehaviour
         {
             if(PC._Plant != null)
             {
-                Debug.Log("I'm removing a plant");
                 PC._Plant.RemoveFromPlanter();
                 PC.RemovePlant();
             }
