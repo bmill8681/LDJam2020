@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using PlantStuff;
+using TMPro;
 
 public class GameManagerScript : MonoBehaviour
 {
@@ -10,8 +11,12 @@ public class GameManagerScript : MonoBehaviour
     public string scene;
 
     public GameTimer GameTimeController = null;
+    public PlantCounterScript PlantCounter;
 
     public List<Plant> PlantList;
+    private int PrevPlantCount = 0;
+
+    
 
     private void Awake()
     {
@@ -37,14 +42,22 @@ public class GameManagerScript : MonoBehaviour
         {
             GameTimeController = FindObjectOfType<GameTimer>();
         }
+        if(SceneManagerScript.Instance.GetCurrentScene().Equals("Game") && PlantCounter == null)
+        {
+            PlantCounter = FindObjectOfType<PlantCounterScript>();
+        }
         // If it's time to run an assessment on the plants, assess all plants in the scene
         // This means we need a list of all the living plants in the scene
         if (GameTimeController.GetUpdateStatus())
         {
             RunAssessmentOnPlants();
         }
-    }
 
+        if(PrevPlantCount != PlantList.Count)
+        {
+            PlantCounter.UpdatePlantCounter(PlantList.Count);
+        }
+    }
 
     private void setInitialMusic()
     {
