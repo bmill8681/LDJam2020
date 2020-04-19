@@ -15,6 +15,9 @@ public class PlantControllerScript : MonoBehaviour
 
     public GameObject PlantObject;
     public GameObject PlanterObject;
+    public GameObject NewPlant;
+    public List<Transform> NewPlantPosition;
+    int PlantSpawnIndex = 0;
 
     private void Awake()
     {
@@ -97,8 +100,28 @@ public class PlantControllerScript : MonoBehaviour
         {
             if (this._Plant.Sheer())
             {
-                // Spawn a new plant
+                SpawnNewPlant();
             }
+        }
+    }
+
+    private void SpawnNewPlant()
+    {
+        GameObject newPlant = Instantiate(NewPlant) as GameObject;
+        newPlant.transform.position = NewPlantPosition[PlantSpawnIndex].position;
+        newPlant.transform.SetParent(NewPlantPosition[PlantSpawnIndex]);
+        IncrementPlantSpawnIndex();
+
+        // Add Animation Code Here
+        newPlant.GetComponent<Plant>().DetachNewPlant();
+    }
+
+    private void IncrementPlantSpawnIndex()
+    {
+        PlantSpawnIndex++;
+        if(PlantSpawnIndex >= 3)
+        {
+            PlantSpawnIndex = 0;
         }
     }
 }

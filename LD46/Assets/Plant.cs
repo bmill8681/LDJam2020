@@ -44,6 +44,7 @@ namespace PlantStuff
             {
                 throw new Exception("No game controller found in scene");
             }
+            this.PlantSize = PlantSizes.Small;
             this.GameController.AddPlantTolist(this);
             this.DragController = GetComponent<DragDrop>();
             IsPlanted = false;
@@ -63,6 +64,11 @@ namespace PlantStuff
                 this.IsDragging = false;
                 AdjustCollider();
                 SetPositionOffset();
+            }
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                this.PlantSize = PlantSizes.XLarge;
+                PlantSpriteUpdateHandler.SetPlantSprite(this.PlantSize);
             }
         }
 
@@ -172,6 +178,12 @@ namespace PlantStuff
             this.IsPlanted = false;
             this.CanAttachPlant = false;
             GetComponent<DepthManager>().enabled = true;
+        }
+
+        public void DetachNewPlant()
+        {
+            this.gameObject.transform.SetParent(null);
+            GetComponent<DragDrop>().enabled = true;
         }
 
         void ShowDropIndicator()
