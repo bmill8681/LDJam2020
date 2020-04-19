@@ -14,11 +14,13 @@ public class GameManagerScript : MonoBehaviour
     public PlantCounterScript PlantCounter;
 
     public List<Plant> PlantList;
+    private Plant DeadPlant = null;
     private int PrevPlantCount = 0;
 
     public bool ToolsDisabled = true;
+    public bool GameIsOver = false;
 
-    
+
 
     private void Awake()
     {
@@ -40,24 +42,27 @@ public class GameManagerScript : MonoBehaviour
 
     private void Update()
     {
-        if(SceneManagerScript.Instance.GetCurrentScene().Equals("Game") && GameTimeController == null)
+        if (!GameIsOver)
         {
-            GameTimeController = FindObjectOfType<GameTimer>();
-        }
-        if(SceneManagerScript.Instance.GetCurrentScene().Equals("Game") && PlantCounter == null)
-        {
-            PlantCounter = FindObjectOfType<PlantCounterScript>();
-        }
-        // If it's time to run an assessment on the plants, assess all plants in the scene
-        // This means we need a list of all the living plants in the scene
-        if (GameTimeController != null && GameTimeController.GetUpdateStatus())
-        {
-            RunAssessmentOnPlants();
-        }
+            if (SceneManagerScript.Instance.GetCurrentScene().Equals("Game") && GameTimeController == null)
+            {
+                GameTimeController = FindObjectOfType<GameTimer>();
+            }
+            if (SceneManagerScript.Instance.GetCurrentScene().Equals("Game") && PlantCounter == null)
+            {
+                PlantCounter = FindObjectOfType<PlantCounterScript>();
+            }
+            // If it's time to run an assessment on the plants, assess all plants in the scene
+            // This means we need a list of all the living plants in the scene
+            if (GameTimeController != null && GameTimeController.GetUpdateStatus())
+            {
+                RunAssessmentOnPlants();
+            }
 
-        if(PrevPlantCount != PlantList.Count)
-        {
-            PlantCounter.UpdatePlantCounter(PlantList.Count);
+            if (PrevPlantCount != PlantList.Count)
+            {
+                PlantCounter.UpdatePlantCounter(PlantList.Count);
+            }
         }
     }
 
@@ -65,6 +70,8 @@ public class GameManagerScript : MonoBehaviour
     {
         this.PlantList = new List<Plant>();
         this.ToolsDisabled = true;
+        this.GameIsOver = false;
+        this.DeadPlant = null;
         if (GameTimeController != null)
         {
             GameTimeController.ResetGame();
@@ -87,6 +94,32 @@ public class GameManagerScript : MonoBehaviour
         AudioManagerScript.Instance.SetMusic(string.Format("{0}Music", scene));
     }
 
+    private void RunGameOver()
+    {
+        GameOverPanelHandler goPanelHandler = FindObjectOfType<GameOverPanelHandler>();
+        GameObject removeNext = null;
+        foreach(Plant plant in PlantList)
+        {
+            if(plant != DeadPlant)
+            {
+                removeNext = plant.GetComponent<GameObject>();
+            }
+            if(plant != DeadPlant && plant != removeNext)
+            {
+                Destroy(removeNext);
+            }
+        }
+        if(removeNext != null)
+        {
+            Destroy(removeNext);
+        }
+    }
+
+    public Transform GetDeadPlantTransform()
+    {
+        return this.DeadPlant.GetComponent<Transform>();
+    }
+
     private void RunAssessmentOnPlants()
     {
         foreach(Plant plant in PlantList)
@@ -100,8 +133,18 @@ public class GameManagerScript : MonoBehaviour
                 PlantControllerScript PC = plant.GetComponentInParent<PlantControllerScript>();
                 PC.AssessPlant();
             }
+            if (plant.IsDead)
+            {
+                return;
+            }
         }
         GameTimeController.SetRunUpdateFalse();
+    }
+
+    public void SetDeadPlant(Plant plant)
+    {
+        this.GameIsOver = true;
+        this.DeadPlant = plant;
     }
 
     public void AddPlantTolist(Plant plant)

@@ -30,7 +30,7 @@ public class GameTimer : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (this.RunClock)
+        if (this.RunClock && !GameManagerScript.Instance.GameIsOver)
         {
             IncrementTimer();
         }
