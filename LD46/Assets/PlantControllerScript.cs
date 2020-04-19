@@ -84,20 +84,17 @@ public class PlantControllerScript : MonoBehaviour
         _Planter.ReduceWater();
     }
 
-    private int GetRootWaterFactor()
+    public int GetRootWaterFactor()
     {
         int maxWaterLevel = _Planter.GetSize();
 
         if(_Planter.WaterLevel < (maxWaterLevel - _Plant.RootDepth - 2))
         {
-            Debug.Log(string.Format("Planter Holds: {0}, Roots at: {1}, Water at: {2}", _Planter.GetSize(), _Planter.GetSize() - _Plant.RootDepth, _Planter.WaterLevel));
-            Debug.Log(string.Format("Removed HP because the roots are't in water - Water Level: {0}, Roots: {1}, Factor: {2}", _Planter.WaterLevel, _Plant.RootDepth, maxWaterLevel - _Plant.RootDepth - 2));
             return -1;
         }
 
         if(_Planter.WaterLevel > maxWaterLevel - _Plant.RootDepth + 2)
         {
-            Debug.Log(string.Format("Removed HP because the roots are too wet - Water Level: {0}, Roots: {1}, Factor: {2}", _Planter.WaterLevel, _Plant.RootDepth, maxWaterLevel - _Plant.RootDepth + 2));
             return 1;
         }
 

@@ -13,6 +13,7 @@ namespace PlantTools
             WateringCan = 1,
             Sheers = 2,
             Shovel = 3,
+            Inspect = 4
         }
 
         Tools ActiveTool;
