@@ -18,7 +18,7 @@ public class DragDrop : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (ToolManagerScript.Instance.GetActiveTool() != ToolManagerScript.Tools.Hand) return;
+        if (ToolManagerScript.Instance.GetActiveTool() != ToolManagerScript.Tools.Hand || GameManagerScript.Instance.ToolsDisabled) return;
 
         mZCoordinate = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
         mousePosition = gameObject.transform.position - GetMouseWorldPos();
@@ -35,7 +35,7 @@ public class DragDrop : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (ToolManagerScript.Instance.GetActiveTool() != ToolManagerScript.Tools.Hand) return;
+        if (ToolManagerScript.Instance.GetActiveTool() != ToolManagerScript.Tools.Hand || GameManagerScript.Instance.ToolsDisabled) return;
 
         transform.position = GetMouseWorldPos() + mousePosition;
     }

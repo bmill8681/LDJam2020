@@ -14,7 +14,7 @@ public class SheerPlantTool : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (ToolManagerScript.Instance.CheckActiveTool(ToolManagerScript.Tools.Sheers))
+        if (ToolManagerScript.Instance.CheckActiveTool(ToolManagerScript.Tools.Sheers) && !GameManagerScript.Instance.ToolsDisabled)
         {
             PC.SheerPlant();
         }

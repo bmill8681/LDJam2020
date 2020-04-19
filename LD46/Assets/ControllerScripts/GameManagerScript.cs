@@ -16,6 +16,8 @@ public class GameManagerScript : MonoBehaviour
     public List<Plant> PlantList;
     private int PrevPlantCount = 0;
 
+    public bool ToolsDisabled = true;
+
     
 
     private void Awake()
@@ -57,6 +59,16 @@ public class GameManagerScript : MonoBehaviour
         {
             PlantCounter.UpdatePlantCounter(PlantList.Count);
         }
+    }
+
+    public void ToggleToolsDisabled()
+    {
+        ToolsDisabled = !ToolsDisabled;
+    }
+
+    public void SetToolsDisabled(bool value)
+    {
+        ToolsDisabled = value;
     }
 
     private void setInitialMusic()

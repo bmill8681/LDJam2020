@@ -14,7 +14,7 @@ public class RemovePlantTool : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (ToolManagerScript.Instance.CheckActiveTool(ToolManagerScript.Tools.Shovel))
+        if (ToolManagerScript.Instance.CheckActiveTool(ToolManagerScript.Tools.Shovel) && !GameManagerScript.Instance.ToolsDisabled)
         {
             if(PC._Plant != null)
             {

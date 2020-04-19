@@ -14,7 +14,7 @@ public class PlantWaterTool : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (ToolManagerScript.Instance.CheckActiveTool(ToolManagerScript.Tools.WateringCan))
+        if (ToolManagerScript.Instance.CheckActiveTool(ToolManagerScript.Tools.WateringCan) && !GameManagerScript.Instance.ToolsDisabled)
         {
             PC.AddWater();
         }

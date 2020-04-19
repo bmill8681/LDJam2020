@@ -93,12 +93,14 @@ public class GameTimer : MonoBehaviour
     public void ToggleRunClock()
     {
         this.RunClock = !this.RunClock;
+        GameManagerScript.Instance.ToggleToolsDisabled();
         SetPauseText();
     }
 
     public void SetRunClock(bool clockOn)
     {
         this.RunClock = clockOn;
+        GameManagerScript.Instance.SetToolsDisabled(!clockOn);
         SetPauseText();
     }
 

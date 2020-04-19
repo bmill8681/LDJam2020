@@ -9,7 +9,10 @@ public class AddPlanterHandler : MonoBehaviour
 
     public void AddNewPlanter()
     {
-        GameObject newPlanter = Instantiate(NewPlanter) as GameObject;
-        newPlanter.transform.position = NewPlanterPosition.position;
+        if (!GameManagerScript.Instance.ToolsDisabled)
+        {
+            GameObject newPlanter = Instantiate(NewPlanter) as GameObject;
+            newPlanter.transform.position = NewPlanterPosition.position;
+        }
     }
 }
