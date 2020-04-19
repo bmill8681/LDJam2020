@@ -10,9 +10,10 @@ namespace PlantStuff
     {
         public enum PlanterSizes
         {
-            Large = 15,
-            Medium = 10,
-            Small = 5
+            XLarge = 16,
+            Large = 12,
+            Medium = 8,
+            Small = 4
         }
 
         public PlanterSizes PlanterSize;

@@ -49,14 +49,14 @@ public class PlantControllerScript : MonoBehaviour
         int rootWaterFactor = _Plant.RootDepth + _Planter.WaterLevel;
 
         // If the roots aren't in the water, remove HP 
-        if (rootWaterFactor < 16)
+        if (rootWaterFactor < 17)
         {
             _Plant.RemoveHealth();
             HealthRemoved = true;
         }
 
         // If the roots are too wet, remove HP
-        if (rootWaterFactor >= 18)
+        if (rootWaterFactor >= 19)
         {
             _Plant.RemoveHealth();
             HealthRemoved = true;
@@ -89,5 +89,16 @@ public class PlantControllerScript : MonoBehaviour
     public string PrintWaterLevel()
     {
         return _Planter.WaterLevel.ToString();
+    }
+
+    public void SheerPlant()
+    {
+        if(this._Plant != null)
+        {
+            if (this._Plant.Sheer())
+            {
+                // Spawn a new plant
+            }
+        }
     }
 }

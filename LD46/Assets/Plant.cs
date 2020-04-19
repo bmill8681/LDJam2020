@@ -9,11 +9,12 @@ namespace PlantStuff
 {
     public class Plant : MonoBehaviour
     {
-        enum PlantSizes
+        public enum PlantSizes
         {
-            Large = 15, 
-            Medium = 10, 
-            Small = 5
+            XLarge = 16,
+            Large = 12, 
+            Medium = 8, 
+            Small = 4
         }
 
         public DragDrop DragController;
@@ -29,13 +30,14 @@ namespace PlantStuff
         public bool ColliderAdjusted = false;
         bool CanAttachPlant = false;
 
-        PlantSizes PlantSize;
+        public PlantSizes PlantSize;
 
         public GameObject PlantSprite;
+        public PlantSpriteUpdater PlantSpriteUpdateHandler;
         BoxCollider PlanterCollider = null;
         public GameManagerScript GameController;
 
-        private void Awake()
+        private void Start()
         {
             this.GameController = FindObjectOfType<GameManagerScript>();
             if(this.GameController == null)
@@ -46,6 +48,7 @@ namespace PlantStuff
             this.DragController = GetComponent<DragDrop>();
             IsPlanted = false;
             IsDead = false;
+            PlantSpriteUpdateHandler.SetPlantSprite(this.PlantSize);
         }
 
         private void Update()
@@ -61,7 +64,6 @@ namespace PlantStuff
                 AdjustCollider();
                 SetPositionOffset();
             }
-
         }
 
         void AdjustCollider()
@@ -184,6 +186,30 @@ namespace PlantStuff
         public void PrintPlantStatus()
         {
             Debug.Log(string.Format("Dead?: {0}, HP: {1}, Roots: {2}", this.IsDead, this.HP, this.RootDepth));
+        }
+
+        public bool Sheer()
+        {
+            Debug.Log("Attemplting to sheer");
+            bool plantSheerSuccess = false;
+            switch (this.PlantSize)
+            {
+                case PlantSizes.XLarge:
+                    plantSheerSuccess = true;
+                    this.PlantSize = PlantSizes.Large;
+                    break;
+                case PlantSizes.Large:
+                    plantSheerSuccess = true;
+                    this.PlantSize = PlantSizes.Medium;
+                    break;
+                case PlantSizes.Medium:
+                    plantSheerSuccess = true;
+                    this.PlantSize = PlantSizes.Small;
+                    break;
+            }
+            Debug.Log("Sheer Success: " + plantSheerSuccess);
+            PlantSpriteUpdateHandler.SetPlantSprite(this.PlantSize);
+            return plantSheerSuccess;
         }
     }
 }

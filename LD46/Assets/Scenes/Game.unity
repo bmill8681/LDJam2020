@@ -284,7 +284,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -120.00003, y: 1.9999886}
+  m_AnchoredPosition: {x: -120.00003, y: -50}
   m_SizeDelta: {x: 64, y: 128}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &117177429
@@ -308,7 +308,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -390,6 +390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb71b66212493747a1c929de5871d1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsActive: 0
   ToolType: 2
 --- !u!1 &140036273
 GameObject:
@@ -1072,11 +1073,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 332178942}
-  - component: {fileID: 332178941}
   - component: {fileID: 332178940}
   - component: {fileID: 332178939}
   - component: {fileID: 332178943}
   - component: {fileID: 332178944}
+  - component: {fileID: 332178945}
   m_Layer: 0
   m_Name: Plant
   m_TagString: Untagged
@@ -1110,57 +1111,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.15, y: 0.08, z: 0.02}
   m_Center: {x: 0, y: -0.12, z: 0}
---- !u!212 &332178941
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 332178938}
-  m_Enabled: 0
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -3527876879021525145, guid: 930d3bf27c6918745b3b40ea34e71013,
-    type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.32}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!4 &332178942
 Transform:
   m_ObjectHideFlags: 0
@@ -1207,8 +1157,26 @@ MonoBehaviour:
   IsDragging: 0
   IsOffset: 0
   ColliderAdjusted: 0
+  PlantSize: 15
   PlantSprite: {fileID: 802610430}
   GameController: {fileID: 0}
+--- !u!114 &332178945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332178938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e9817e7218263a40b65d332108b1067, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlantSpriteList:
+  - {fileID: -3527876879021525145, guid: 930d3bf27c6918745b3b40ea34e71013, type: 3}
+  - {fileID: -1927889906097043966, guid: 930d3bf27c6918745b3b40ea34e71013, type: 3}
+  - {fileID: 5004531278555049960, guid: 930d3bf27c6918745b3b40ea34e71013, type: 3}
+  - {fileID: -5395861003456798081, guid: 930d3bf27c6918745b3b40ea34e71013, type: 3}
 --- !u!1 &336977636
 GameObject:
   m_ObjectHideFlags: 0
@@ -1245,7 +1213,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -252, y: 1.9999886}
+  m_AnchoredPosition: {x: -252, y: -50}
   m_SizeDelta: {x: 64, y: 128}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &336977638
@@ -1269,7 +1237,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -1351,6 +1319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb71b66212493747a1c929de5871d1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsActive: 0
   ToolType: 0
 --- !u!1 &344812109
 GameObject:
@@ -2078,8 +2047,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: dd824c67b863dfd4989fb108506ead89, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2365,6 +2334,8 @@ GameObject:
   - component: {fileID: 617997615}
   - component: {fileID: 617997616}
   - component: {fileID: 617997617}
+  - component: {fileID: 617997618}
+  - component: {fileID: 617997619}
   m_Layer: 0
   m_Name: LargeRoundPlanter
   m_TagString: planter
@@ -2384,6 +2355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebeaea27352e2c94e87d3a70c338a917, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlanterSize: 15
   WaterLevel: 0
 --- !u!4 &617997612
 Transform:
@@ -2474,6 +2446,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &617997618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617997610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f478a878537192428a71bbb48c7c8a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &617997619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617997610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01dbf0137163d8d49814c9d22bca990a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &662622471
 GameObject:
   m_ObjectHideFlags: 0
@@ -2585,8 +2581,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: dd824c67b863dfd4989fb108506ead89, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2834,7 +2830,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -186.00003, y: 2}
+  m_AnchoredPosition: {x: -186.00003, y: -50}
   m_SizeDelta: {x: 64, y: 128}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &737394483
@@ -2858,7 +2854,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -2940,6 +2936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb71b66212493747a1c929de5871d1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsActive: 0
   ToolType: 1
 --- !u!1 &738652786
 GameObject:
@@ -3288,8 +3285,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3527876879021525145, guid: 930d3bf27c6918745b3b40ea34e71013,
-    type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3297,7 +3293,7 @@ SpriteRenderer:
   m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &802610432
@@ -3744,6 +3740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebeaea27352e2c94e87d3a70c338a917, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlanterSize: 0
   WaterLevel: 0
 --- !u!4 &1011239921
 Transform:
@@ -5340,9 +5337,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
+  m_Sprite: {fileID: 21300000, guid: dd824c67b863dfd4989fb108506ead89, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -5599,7 +5596,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -54.00003, y: 1.9999886}
+  m_AnchoredPosition: {x: -54.00003, y: -50}
   m_SizeDelta: {x: 64, y: 128}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1974834113
@@ -5623,7 +5620,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -5705,6 +5702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb71b66212493747a1c929de5871d1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsActive: 0
   ToolType: 3
 --- !u!1 &1976804543
 GameObject:
