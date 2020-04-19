@@ -67,10 +67,32 @@ namespace PlantStuff
                 AdjustCollider();
                 SetPositionOffset();
             }
-            if (Input.GetKeyDown(KeyCode.G))
+            ForTestingPurposes();
+
+        }
+
+        void ForTestingPurposes()
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 this.PlantSize = PlantSizes.XLarge;
+                this.HP = this.MaxHP;
                 PlantSpriteUpdateHandler.SetPlantSprite(this.PlantSize, this.HP);
+            }
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                this.PlantSize = PlantSizes.Large;
+                this.HP = this.MaxHP;
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                this.PlantSize = PlantSizes.Medium;
+                this.HP = this.MaxHP;
+            }
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                this.PlantSize = PlantSizes.Small;
+                this.HP = this.MaxHP;
             }
             if (Input.GetKeyDown(KeyCode.K))
             {
