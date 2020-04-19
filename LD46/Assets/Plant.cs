@@ -39,6 +39,7 @@ namespace PlantStuff
         public PlantSpriteUpdater PlantSpriteUpdateHandler;
         BoxCollider PlanterCollider = null;
         public GameManagerScript GameController;
+        private List<string> ActionQueue = new List<string>();
 
         private void Start()
         {
@@ -55,6 +56,7 @@ namespace PlantStuff
             this.IsPlanted = false;
             this.IsDead = false;
             PlantSpriteUpdateHandler.SetPlantSprite(this.PlantSize, this.HP);
+            SetColliderSize();
         }
 
         private void Update()
@@ -71,38 +73,154 @@ namespace PlantStuff
                 SetPositionOffset();
             }
 
-            ForTestingPurposes();
-        }
+            if(!this.IsDragging && this.ActionQueue.Count > 0)
+            {
+                RunActionQueue();
+            }
 
-        void ForTestingPurposes()
-        {
-            if (Input.GetKeyDown(KeyCode.Q))
+            // For testing purposes
+            if (Input.GetKeyDown(KeyCode.Q)) //XL
             {
                 this.PlantSize = PlantSizes.XLarge;
                 this.HP = this.MaxHP;
+                PlantSpriteUpdateHandler.SetPlantSprite(this.PlantSize, this.HP);
+                SetColliderSize();
             }
-            if (Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKeyDown(KeyCode.W)) //L
             {
                 this.PlantSize = PlantSizes.Large;
                 this.HP = this.MaxHP;
+                PlantSpriteUpdateHandler.SetPlantSprite(this.PlantSize, this.HP);
+                SetColliderSize();
             }
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E)) //M
             {
                 this.PlantSize = PlantSizes.Medium;
                 this.HP = this.MaxHP;
+                PlantSpriteUpdateHandler.SetPlantSprite(this.PlantSize, this.HP);
+                SetColliderSize();
             }
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.R)) //S
             {
                 this.PlantSize = PlantSizes.Small;
                 this.HP = this.MaxHP;
+                PlantSpriteUpdateHandler.SetPlantSprite(this.PlantSize, this.HP);
+                SetColliderSize();
             }
             if (Input.GetKeyDown(KeyCode.K))
             {
                 this.RemoveHealth();
+                PlantSpriteUpdateHandler.SetPlantSprite(this.PlantSize, this.HP);
             }
         }
 
+        void RunActionQueue()
+        {
+            List<string> UpdateQueue = new List<string>();
+            foreach(string item in this.ActionQueue)
+            {
+                UpdateQueue.Add(item);
+            }
+            ActionQueue = new List<string>();
+
+            while(UpdateQueue.Count > 0)
+            {
+                string item = UpdateQueue[UpdateQueue.Count - 1];
+                UpdateQueue.RemoveAt(UpdateQueue.Count - 1);
+                RunAction(item);
+            }
+        }
+
+        void RunAction(string item)
+        {
+            switch (item)
+            {
+                case "SETCOLLIDERSIZE":
+                    this.SetColliderSize();
+                    break;
+                default:
+                    Debug.Log(string.Format("'{0}' - is not an action in RunAction method", item));
+                    break;
+            }
+        }
+
+
+
+        #region Collider Adjustment
+        /* Refactor these - should be in their own class */
+
+        void SetColliderSize()
+        {
+            if(IsDragging)
+            {
+                ActionQueue.Add("SETCOLLIDERSIZE");                
+            }
+            else
+            {
+                if (this.PlantSize == PlantSizes.XLarge)
+                {
+                    SetColliderSizeXL();
+                }
+                else if (this.PlantSize == PlantSizes.Large)
+                {
+                    SetColliderSizeL();
+                }
+                else if (this.PlantSize == PlantSizes.Medium)
+                {
+                    SetColliderSizeM();
+                }
+                else if (this.PlantSize == PlantSizes.Small)
+                {
+                    SetColliderSizeS();
+                }
+            }
+        }
+
+        void SetColliderSizeXL()
+        {
+            BoxCollider collider = GetComponent<BoxCollider>();
+            collider.size = new Vector3(0.15f, 0.24f, 0);
+            collider.center = new Vector3(0, -0.04f, 0);
+        }
+        void SetColliderSizeL()
+        {
+            BoxCollider collider = GetComponent<BoxCollider>();
+            collider.size = new Vector3(0.15f, 0.22f, 0);
+            collider.center = new Vector3(0, -0.05f, 0);
+        }
+        void SetColliderSizeM()
+        {
+            BoxCollider collider = GetComponent<BoxCollider>();
+            collider.size = new Vector3(0.15f, 0.15f, 0.02f);
+            collider.center = new Vector3(0, -.085f, 0);
+        }
+        void SetColliderSizeS()
+        {
+            BoxCollider collider = GetComponent<BoxCollider>();
+            collider.size = new Vector3(0.15f, 0.08f, 0);
+            collider.center = new Vector3(0, -0.12f, 0);
+        }
         void AdjustCollider()
+        {
+            if(this.PlantSize == PlantSizes.XLarge)
+            {
+                AdjustColliderXL();
+            }
+            else if (this.PlantSize == PlantSizes.Large)
+            {
+                AdjustColliderL();
+            }
+            else if(this.PlantSize == PlantSizes.Medium)
+            {
+                AdjustColliderM();
+            }
+            else if(this.PlantSize == PlantSizes.Small)
+            {
+                AdjustColliderS();
+            }
+        }
+
+        void AdjustColliderXL()
         {
             if (this.IsDragging && !ColliderAdjusted)
             {
@@ -110,17 +228,75 @@ namespace PlantStuff
                 BoxCollider collider = GetComponent<BoxCollider>();
                 collider.size = new Vector3(collider.size.x, collider.size.y + 0.2f, collider.size.z);
                 collider.center = new Vector3(collider.center.x, collider.center.y + 0.1f, collider.center.z);
-            } else if (!this.IsDragging && ColliderAdjusted)
+            }
+            else if (!this.IsDragging && ColliderAdjusted)
             {
                 this.ColliderAdjusted = false;
                 BoxCollider collider = GetComponent<BoxCollider>();
                 Transform colTransform = collider.GetComponent<Transform>();
-
                 collider.size = new Vector3(collider.size.x, collider.size.y - 0.2f, collider.size.z);
                 collider.center = new Vector3(collider.center.x, collider.center.y - 0.1f, collider.center.z);
             }
         }
 
+        void AdjustColliderL()
+        {
+            if (this.IsDragging && !ColliderAdjusted)
+            {
+                this.ColliderAdjusted = true;
+                BoxCollider collider = GetComponent<BoxCollider>();
+                collider.size = new Vector3(collider.size.x, collider.size.y + 0.2f, collider.size.z);
+                collider.center = new Vector3(collider.center.x, collider.center.y + 0.1f, collider.center.z);
+            }
+            else if (!this.IsDragging && ColliderAdjusted)
+            {
+                this.ColliderAdjusted = false;
+                BoxCollider collider = GetComponent<BoxCollider>();
+                Transform colTransform = collider.GetComponent<Transform>();
+                collider.size = new Vector3(collider.size.x, collider.size.y - 0.2f, collider.size.z);
+                collider.center = new Vector3(collider.center.x, collider.center.y - 0.1f, collider.center.z);
+            }
+        }
+
+        void AdjustColliderM()
+        {
+            if (this.IsDragging && !ColliderAdjusted)
+            {
+                this.ColliderAdjusted = true;
+                BoxCollider collider = GetComponent<BoxCollider>();
+                collider.size = new Vector3(collider.size.x, collider.size.y + 0.2f, collider.size.z);
+                collider.center = new Vector3(collider.center.x, collider.center.y + 0.1f, collider.center.z);
+            }
+            else if (!this.IsDragging && ColliderAdjusted)
+            {
+                this.ColliderAdjusted = false;
+                BoxCollider collider = GetComponent<BoxCollider>();
+                Transform colTransform = collider.GetComponent<Transform>();
+                collider.size = new Vector3(collider.size.x, collider.size.y - 0.2f, collider.size.z);
+                collider.center = new Vector3(collider.center.x, collider.center.y - 0.1f, collider.center.z);
+            }
+        }
+
+        void AdjustColliderS()
+        {
+            if (this.IsDragging && !ColliderAdjusted)
+            {
+                this.ColliderAdjusted = true;
+                BoxCollider collider = GetComponent<BoxCollider>();
+                collider.size = new Vector3(collider.size.x, collider.size.y + 0.2f, collider.size.z);
+                collider.center = new Vector3(collider.center.x, collider.center.y + 0.1f, collider.center.z);
+            }
+            else if (!this.IsDragging && ColliderAdjusted)
+            {
+                this.ColliderAdjusted = false;
+                BoxCollider collider = GetComponent<BoxCollider>();
+                Transform colTransform = collider.GetComponent<Transform>();
+                collider.size = new Vector3(collider.size.x, collider.size.y - 0.2f, collider.size.z);
+                collider.center = new Vector3(collider.center.x, collider.center.y - 0.1f, collider.center.z);
+            }
+        }
+
+        #endregion
         void SetPositionOffset()
         {
 
@@ -182,6 +358,7 @@ namespace PlantStuff
                 this.PlantSize = PlantSizes.XLarge;
             }
             PlantSpriteUpdateHandler.SetPlantSprite(this.PlantSize, this.HP);
+            SetColliderSize();
         }
 
         public void AddHeath()
@@ -193,6 +370,7 @@ namespace PlantStuff
                 AddRootGrowth();
             }
             PlantSpriteUpdateHandler.SetPlantSprite(this.PlantSize, this.HP);
+            SetColliderSize();
         }
 
         public void RemoveHealth()
@@ -204,6 +382,7 @@ namespace PlantStuff
                 IsDead = true;
             }
             PlantSpriteUpdateHandler.SetPlantSprite(this.PlantSize, this.HP);
+            SetColliderSize();
         }
 
         void OnTriggerEnter(Collider other)
@@ -273,12 +452,11 @@ namespace PlantStuff
 
         public void PrintPlantStatus()
         {
-            Debug.Log(string.Format("Dead?: {0}, HP: {1}, Roots: {2}, Growth: {3}", this.IsDead, this.HP, this.RootDepth, this.PlantGrowth));
+            Debug.Log(string.Format("Dead: {0}, HP: {1}, Roots: {2}, Growth: {3}", this.IsDead, this.HP, this.RootDepth, this.PlantGrowth));
         }
 
         public bool Sheer()
         {
-            Debug.Log("Attemplting to sheer");
             bool plantSheerSuccess = false;
             switch (this.PlantSize)
             {
@@ -295,7 +473,6 @@ namespace PlantStuff
                     this.PlantSize = PlantSizes.Small;
                     break;
             }
-            Debug.Log("Sheer Success: " + plantSheerSuccess);
             return plantSheerSuccess;
         }
     }
