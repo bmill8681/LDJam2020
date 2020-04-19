@@ -2185,8 +2185,9 @@ GameObject:
   - component: {fileID: 617997619}
   - component: {fileID: 617997620}
   - component: {fileID: 617997621}
+  - component: {fileID: 617997622}
   m_Layer: 0
-  m_Name: LargeRoundPlanter
+  m_Name: LargePlanter
   m_TagString: planter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2288,6 +2289,9 @@ MonoBehaviour:
   - {fileID: 1581542346}
   - {fileID: 1018232767}
   - {fileID: 2130011980}
+  SpawnAnimator: {fileID: 1581542347}
+  SpawnAnimator1: {fileID: 1018232768}
+  SpawnAnimator2: {fileID: 2130011981}
 --- !u!54 &617997617
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2356,6 +2360,18 @@ MonoBehaviour:
   BackgroundSprite: {fileID: 1243776893}
   RootsSprite: {fileID: 1091579638}
   ContainerSprite: {fileID: 725268255}
+--- !u!114 &617997622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617997610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cabada8dfcabe534bbbe4569f699de54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &662622471
 GameObject:
   m_ObjectHideFlags: 0
@@ -3668,6 +3684,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1018232767}
+  - component: {fileID: 1018232768}
+  - component: {fileID: 1018232769}
   m_Layer: 0
   m_Name: NewPlantLocation (1)
   m_TagString: Untagged
@@ -3689,6 +3707,37 @@ Transform:
   m_Father: {fileID: 617997612}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1018232768
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018232766}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0136d89b6ef670145a6145c312d34e20, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1018232769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018232766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f3b0e1cff452db488d701e31b7ded82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1037191661
 GameObject:
   m_ObjectHideFlags: 0
@@ -5029,6 +5078,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1581542346}
+  - component: {fileID: 1581542347}
+  - component: {fileID: 1581542348}
   m_Layer: 0
   m_Name: NewPlantLocation
   m_TagString: Untagged
@@ -5050,6 +5101,37 @@ Transform:
   m_Father: {fileID: 617997612}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1581542347
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1581542345}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 728fe91fd262b684f83ef6b07314dbe7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1581542348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1581542345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f3b0e1cff452db488d701e31b7ded82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1665692545
 GameObject:
   m_ObjectHideFlags: 0
@@ -6493,6 +6575,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2130011980}
+  - component: {fileID: 2130011981}
+  - component: {fileID: 2130011982}
   m_Layer: 0
   m_Name: NewPlantLocation (2)
   m_TagString: Untagged
@@ -6514,6 +6598,37 @@ Transform:
   m_Father: {fileID: 617997612}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &2130011981
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130011979}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3af3b7d7a1be8d949888fd8f962c467c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2130011982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130011979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f3b0e1cff452db488d701e31b7ded82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2850443478672194396
 PrefabInstance:
   m_ObjectHideFlags: 0

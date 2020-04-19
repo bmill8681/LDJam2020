@@ -25,6 +25,7 @@ namespace PlantStuff
         private int MaxHP = 6;
         [SerializeField]
         private int PlantGrowth;
+        public int SpawnLocation;
 
         public bool IsPlanted;
         public bool IsDead;
@@ -463,16 +464,21 @@ namespace PlantStuff
                 case PlantSizes.XLarge:
                     plantSheerSuccess = true;
                     this.PlantSize = PlantSizes.Large;
+                    this.PlantGrowth = 11;
                     break;
                 case PlantSizes.Large:
                     plantSheerSuccess = true;
                     this.PlantSize = PlantSizes.Medium;
+                    this.PlantGrowth = 7;
                     break;
                 case PlantSizes.Medium:
                     plantSheerSuccess = true;
                     this.PlantSize = PlantSizes.Small;
+                    this.PlantGrowth = 3;
                     break;
             }
+            AdjustCollider();
+            AdjustPlantSize();
             return plantSheerSuccess;
         }
     }

@@ -19,6 +19,10 @@ public class PlantControllerScript : MonoBehaviour
     public List<Transform> NewPlantPosition;
     int PlantSpawnIndex = 0;
 
+    public Animator SpawnAnimator;
+    public Animator SpawnAnimator1;
+    public Animator SpawnAnimator2;
+
     private void Awake()
     {
         this._Planter = PlanterObject.GetComponent<Planter>();
@@ -132,11 +136,29 @@ public class PlantControllerScript : MonoBehaviour
         GameObject newPlant = Instantiate(NewPlant) as GameObject;
         newPlant.transform.position = NewPlantPosition[PlantSpawnIndex].position;
         newPlant.transform.SetParent(NewPlantPosition[PlantSpawnIndex]);
+        newPlant.GetComponent<Plant>().SpawnLocation = PlantSpawnIndex;
+        GetComponent<PlantBabyDetacher>().AddSpawnerToList(PlantSpawnIndex, newPlant.GetComponent<Plant>());
+        TriggerSpawnAnim(PlantSpawnIndex);
         IncrementPlantSpawnIndex();
-
         // Add Animation Code Here
-        newPlant.GetComponent<Plant>().DetachNewPlant();
     }
+
+    private void TriggerSpawnAnim(int location)
+    {
+        if(location == 0)
+        {
+            SpawnAnimator.SetTrigger("SpawnNewPlantAnim");
+        }
+        else if (location == 1)
+        {
+            SpawnAnimator1.SetTrigger("SpawnNewPlant1Anim");
+        }
+        else if (location == 2)
+        {
+            SpawnAnimator2.SetTrigger("SpawnNewPlant2Anim");
+        }
+    }
+
 
     private void IncrementPlantSpawnIndex()
     {
@@ -145,5 +167,10 @@ public class PlantControllerScript : MonoBehaviour
         {
             PlantSpawnIndex = 0;
         }
+    }
+
+    public void TriggerPlantBabyDetacher(int location)
+    {
+        GetComponent<PlantBabyDetacher>().RemoveSpawnerFromList(location);
     }
 }
