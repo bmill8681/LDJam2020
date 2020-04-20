@@ -5951,6 +5951,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1880562014}
+  - component: {fileID: 1880562015}
   m_Layer: 5
   m_Name: InspectPanelParent
   m_TagString: Untagged
@@ -5981,6 +5982,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 800, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1880562015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880562013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0407183e9d4954d40ad719d46e5eccb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WaterLevelSprite: {fileID: 107425555}
+  BackgroundSprite: {fileID: 1243776893}
+  RootsSprite: {fileID: 1091579638}
+  ContainerSprite: {fileID: 725268255}
 --- !u!1 &1960668220
 GameObject:
   m_ObjectHideFlags: 0
@@ -7257,11 +7274,6 @@ PrefabInstance:
       propertyPath: ContainerSprite
       value: 
       objectReference: {fileID: 725268255}
-    - target: {fileID: 8310220616504834720, guid: b8bb707fdc951514298b96eda4c4bcbd,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.01
-      objectReference: {fileID: 0}
     - target: {fileID: 8310220616504834723, guid: b8bb707fdc951514298b96eda4c4bcbd,
         type: 3}
       propertyPath: m_SortingOrder

@@ -20,6 +20,7 @@ public class RemovePlantTool : MonoBehaviour
             {
                 PC._Plant.RemoveFromPlanter();
                 PC.RemovePlant();
+                AudioManagerScript.Instance.PlayCharacterSFX("ShovelSFX", "CharacterSFXSource");
             }
         }
     }

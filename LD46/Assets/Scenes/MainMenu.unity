@@ -1616,6 +1616,7 @@ MonoBehaviour:
   PlantCounter: {fileID: 0}
   PlantList: []
   ToolsDisabled: 1
+  GameIsOver: 0
 --- !u!4 &1085261189
 Transform:
   m_ObjectHideFlags: 0
@@ -2931,9 +2932,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MusicList:
-  - {fileID: 8300000, guid: d331df6ea7296e142b5cde55ddc5d8a9, type: 3}
-  CharacterSFXList: []
-  EnemySFXList: []
+  - {fileID: 8300000, guid: 72bc7b16ee6251644ae3dfb4a2ca26d5, type: 3}
+  CharacterSFXList:
+  - {fileID: 8300000, guid: 297acb50f67c8a3478c994c0f1682d9f, type: 3}
+  - {fileID: 8300000, guid: 842d80b5f0fde364d9bc74bcc1e65560, type: 3}
+  - {fileID: 8300000, guid: ffc45cd4be6aa2d499c749881ab425ea, type: 3}
+  - {fileID: 8300000, guid: e2503ea8beab50746b17417f7fa3fe74, type: 3}
+  EnemySFXList:
+  - {fileID: 8300000, guid: 297acb50f67c8a3478c994c0f1682d9f, type: 3}
   WorldSFXList: []
   AudioSourceList:
   - {fileID: 1956006183}
@@ -2947,6 +2953,8 @@ MonoBehaviour:
   - {fileID: 746136960}
   - {fileID: 1085623571}
   - {fileID: 1651658820}
+  MusicVolumeSlider: 0.25
+  SFXVolumeSlider: 1
 --- !u!4 &1625371538
 Transform:
   m_ObjectHideFlags: 0
@@ -3133,7 +3141,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: -6.0000057}
+  m_AnchoredPosition: {x: 0, y: -6}
   m_SizeDelta: {x: 508.02, y: 50}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1715920680

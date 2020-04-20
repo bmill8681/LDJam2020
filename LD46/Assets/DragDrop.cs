@@ -8,12 +8,14 @@ public class DragDrop : MonoBehaviour
 {
 
     public bool IsDragging = false;
+    private bool SFXPlayed = false;
     Vector3 mousePosition;
     float mZCoordinate;
 
     private void OnMouseUp()
     {
         IsDragging = false;
+        SFXPlayed = false;
     }
 
     private void OnMouseDown()
@@ -23,6 +25,7 @@ public class DragDrop : MonoBehaviour
         mZCoordinate = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
         mousePosition = gameObject.transform.position - GetMouseWorldPos();
         IsDragging = true;
+
     }
 
     private Vector3 GetMouseWorldPos()
@@ -36,6 +39,11 @@ public class DragDrop : MonoBehaviour
     private void OnMouseDrag()
     {
         if (ToolManagerScript.Instance.GetActiveTool() != ToolManagerScript.Tools.Hand || GameManagerScript.Instance.ToolsDisabled) return;
+        if (!SFXPlayed)
+        {
+            AudioManagerScript.Instance.PlayCharacterSFX("GrabSFX", "CharacterSFXSource");
+            SFXPlayed = true;
+        }
 
         transform.position = GetMouseWorldPos() + mousePosition;
     }

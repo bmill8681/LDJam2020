@@ -13,6 +13,7 @@ public class AddPlanterHandler : MonoBehaviour
         {
             GameObject newPlanter = Instantiate(NewPlanter) as GameObject;
             newPlanter.transform.position = NewPlanterPosition.position;
+            AudioManagerScript.Instance.PlayCharacterSFX("GrabSFX", "CharacterSFXSource");
         }
     }
 }

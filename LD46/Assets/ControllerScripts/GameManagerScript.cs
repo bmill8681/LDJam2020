@@ -36,7 +36,7 @@ public class GameManagerScript : MonoBehaviour
 
     private void Start()
     {
-        //setInitialMusic();
+        setInitialMusic();
         scene = SceneManagerScript.Instance.GetCurrentScene();
     }
 
@@ -91,7 +91,7 @@ public class GameManagerScript : MonoBehaviour
     private void setInitialMusic()
     {
         string scene = GameObject.FindObjectOfType<SceneManagerScript>().GetCurrentScene(); 
-        AudioManagerScript.Instance.SetMusic(string.Format("{0}Music", scene));
+        AudioManagerScript.Instance.SetMusic("BadMusic");
     }
 
     private void RunGameOver()

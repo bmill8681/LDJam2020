@@ -12,6 +12,10 @@ public class AudioManagerScript : MonoBehaviour
     public List<AudioClip> EnemySFXList;
     public List<AudioClip> WorldSFXList ;
     public List<AudioSource> AudioSourceList;
+    [Range(0.0f, 1.0f)]
+    public float MusicVolumeSlider;
+    [Range(0.0f, 1.0f)]
+    public float SFXVolumeSlider;
 
     private Dictionary<string, AudioClip> Music = new Dictionary<string, AudioClip>();
     private Dictionary<string, AudioClip> CharacterSFX = new Dictionary<string, AudioClip>();
@@ -32,6 +36,18 @@ public class AudioManagerScript : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if(AudioSources["MusicSource"].volume != MusicVolumeSlider)
+        {
+            AudioSources["MusicSource"].volume = MusicVolumeSlider;
+        }
+        if (AudioSources["CharacterSFXSource"].volume != SFXVolumeSlider)
+        {
+            AudioSources["CharacterSFXSource"].volume = SFXVolumeSlider;
+        }
+    }
+
     private void PopulateDictionaries()
     {
         foreach(AudioClip clip in MusicList)
@@ -42,6 +58,7 @@ public class AudioManagerScript : MonoBehaviour
         foreach (AudioClip clip in CharacterSFXList)
         {
             // add to music list based on name
+            CharacterSFX.Add(clip.name, clip);
         }
         foreach (AudioClip clip in EnemySFXList)
         {
@@ -63,6 +80,7 @@ public class AudioManagerScript : MonoBehaviour
         AudioSource source = this.AudioSources["MusicSource"];
         source.clip = this.Music[music];
         source.loop = true;
+        source.volume = MusicVolumeSlider;
         source.Play();
     }
 

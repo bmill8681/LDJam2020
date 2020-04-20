@@ -17,6 +17,7 @@ public class PlantWaterTool : MonoBehaviour
         if (ToolManagerScript.Instance.CheckActiveTool(ToolManagerScript.Tools.WateringCan) && !GameManagerScript.Instance.ToolsDisabled)
         {
             PC.AddWater();
+            AudioManagerScript.Instance.PlayCharacterSFX("WaterSFX", "CharacterSFXSource");
         }
     }
 }

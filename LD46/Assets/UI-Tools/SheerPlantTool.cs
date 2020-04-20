@@ -17,6 +17,7 @@ public class SheerPlantTool : MonoBehaviour
         if (ToolManagerScript.Instance.CheckActiveTool(ToolManagerScript.Tools.Sheers) && !GameManagerScript.Instance.ToolsDisabled)
         {
             PC.SheerPlant();
+            AudioManagerScript.Instance.PlayCharacterSFX("SheersSFX", "CharacterSFXSource");
         }
     }
 }
